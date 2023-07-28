@@ -1,3 +1,7 @@
+#custom
+.angular
+.vscode
+
 # Logs
 logs
 *.log
