@@ -1,1 +1,35 @@
-<p>scannedresult works!</p>
+<div *ngIf="isCorrect !== null">
+    <!-- scanned result -->
+    <div class="row my-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="text-center">
+                            <i *ngIf="isCorrect" class="text-success bi bi-check" style="font-size: 120px;"></i>
+                            <i *ngIf="isCorrect === false" class="text-danger bi bi-clipboard-x" style="font-size: 120px;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row pb-5 my-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div *ngIf="isCorrect" class="text-center">
+                           <p class="text-success"><strong> INVITATION CHECK PASS </strong></p>
+                           <p class="">You're welcome. Do have a wonderful experience.</p>
+                        </div>
+                        <div *ngIf="isCorrect === false" class="text-center">
+                           <p class="text-danger"><strong> INVITATION CHECK FAILED </strong></p>
+                           <p class="">Sorry, it seems you are not invited for this event.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
