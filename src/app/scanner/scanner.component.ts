@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BarcodeFormat, BrowserMultiFormatReader, DecodeHintType } from '@zxing/library';
 import { GlobalDataService } from '../gen-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Camera, CameraResultType, CameraPluginPermissions } from '@capacitor/camera';
 
 @Component({
   selector: 'app-scanner',
@@ -29,8 +30,20 @@ export class ScannerComponent {
 		// this.codeReader.setHints([DecodeHintType.TRY_HARDER]); // Optional: Improve QR code detection
 
 	}
-	ngOnInit(){
+	async ngOnInit(){
 		this.globalService.isQRCorrect.next(null);
+
+		//asking for permission
+		try { 
+			// Will try to ask for permission 
+			await navigator.mediaDevices.getUserMedia({ audio: false, video: true }); 
+		} catch (err) {
+			try{
+				await Camera.requestPermissions();
+			} catch (error){
+				// do nothing
+			}
+		} 
 	}
 
 	formats: BarcodeFormat[] = [
